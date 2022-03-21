@@ -1482,7 +1482,6 @@ void save_random_image_as_array(image m)
     }
 
     fclose(output_file);
-    exit(EXIT_SUCCESS);
 }
 
 image load_array_to_img(char* filename, int w, int h, int c)

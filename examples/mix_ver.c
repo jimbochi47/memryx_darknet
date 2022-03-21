@@ -6,7 +6,7 @@
 
 void run_mixver(char *cfgfile, char *weightfile, char* filename)
 {
-   	network *net = load_network(cfgfile, weightfile, 0);
+    network *net = load_network(cfgfile, weightfile, 0);
     set_batch_network(net, 1);
 
     image img_data_in;

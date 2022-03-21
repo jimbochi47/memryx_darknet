@@ -1464,3 +1464,48 @@ void free_image(image m)
         free(m.data);
     }
 }
+
+void save_random_image_as_array(image m)
+{
+    FILE* output_file = fopen("input_image", "w+");
+    if (!output_file) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
+
+    int i;
+    char line_buffer[20];
+    for(i = 0; i < m.w*m.h*m.c; ++i){
+        sprintf (line_buffer, "%f \n", m.data[i]);
+        //printf("Input_imgae: %s = %f\n" ,line_buffer, m.data[i]);
+        fputs(line_buffer, output_file);
+    }
+
+    fclose(output_file);
+    exit(EXIT_SUCCESS);
+}
+
+image load_array_to_img(char* filename, int w, int h, int c)
+{
+    FILE* input_file = fopen("input_image", "r");
+    if (!input_file) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
+
+    image out = make_empty_image(w,h,c);
+    out.data = calloc(h*w*c, sizeof(float));
+    int i = 0;
+
+    char line_buffer[20];
+    while(fgets(line_buffer, sizeof(line_buffer), input_file) != NULL) {
+        line_buffer[strcspn(line_buffer, "\n")] = 0;
+        // printf("jimbo inside: %s \n", line_buffer);
+        out.data[i] = atof(line_buffer);
+        i++;
+    }
+
+    fclose(input_file);
+
+    return out;
+}

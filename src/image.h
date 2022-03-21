@@ -60,6 +60,8 @@ image make_empty_image(int w, int h, int c);
 void copy_image_into(image src, image dest);
 
 image get_image_layer(image m, int l);
+image load_array_to_img(char* filename, int w, int h, int c);
+void save_random_image_as_array(image m);
 
 #ifdef __cplusplus
 }

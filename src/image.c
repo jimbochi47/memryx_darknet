@@ -1486,7 +1486,7 @@ void save_random_image_as_array(image m)
 
 image load_array_to_img(char* filename, int w, int h, int c)
 {
-    FILE* input_file = fopen("input_image", "r");
+    FILE* input_file = fopen(filename, "r");
     if (!input_file) {
         perror("fopen");
         exit(EXIT_FAILURE);
